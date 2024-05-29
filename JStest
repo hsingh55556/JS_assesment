@@ -1,0 +1,133 @@
+/* 
+// Metacrafters - Beginning Javascript
+//
+// This is a javascript playground for testing your javascript code!
+// When you are ready to test, simply right click and select "Run Code"
+// to see the result print below. If you have more then one snippet of code,
+// you can highlight the code you want to test, and then right click and select "Run Code"
+*/
+
+// Enter your code below this line
+
+// Code example
+/*
+Assessment Requirements
+1. Create a variable that can hold a number of NFT's. What type of variable might this be?
+2. Create an object inside your mintNFT function that will hold the metadata for your NFTs. 
+   The metadata values will be passed to the function as parameters. When the NFT is ready, 
+   you will store it in the variable you created in step 1
+3. Your listNFTs() function will print all of your NFTs metadata to the console (i.e. console.log("Name: " + someNFT.name))
+4. For good measure, getTotalSupply() should return the number of NFT's you have created
+*/
+
+// create a variable to hold your NFT's
+const NFTs = []
+
+// this function will take in some values as parameters, create an
+// NFT object using the parameters passed to it for its metadata, 
+// and store it in the variable above.
+function mintNFT (_name, _publish_date, _creator, _functionality, 
+) {
+    if (!_name || !_publish_date || !_creator || !_functionality) {
+        console.error("Error: Missing parameters. All fields are required.");
+        return;
+    }
+    const NFT={
+        "name": _name,
+        "publish_date": _publish_date,
+        "creator": _creator,
+        "functionality": _functionality 
+
+    }
+    NFTs.push(NFT);
+    console.log("succesfully minted :"+ _name);
+    
+}
+
+// create a "loop" that will go through an "array" of NFT's
+// and print their metadata with console.log()
+function listNFTs () {
+    if (NFTs.length === 0) {
+        console.log("No NFTs found");
+        return;
+    }
+    for(let i=0; i<NFTs.length;i++){
+        console.log(NFTs[i])
+
+    }
+
+}
+// to find minted nfts
+function findNFTByName(name) {
+    const nameLower = name.toLowerCase();
+    let foundNFT = null;
+
+    for (let i = 0; i < NFTs.length; i++) {
+        if (NFTs[i].name.toLowerCase() === nameLower) {
+            foundNFT = NFTs[i];
+            break; // Exit the loop once the NFT is found
+        }
+    }
+
+    if (!foundNFT) {
+        console.log(`No NFT found with the name: ${name}`);
+    }
+    else{
+        console.log('Found NFT:');
+        console.log(`ID: ${foundNFT.id}`);
+        console.log(`Name: ${foundNFT.name}`);
+        console.log(`Publish Date: ${foundNFT.publish_date}`);
+        console.log(`Creator: ${foundNFT.creator}`);
+        console.log(`Functionality: ${foundNFT.functionality}`);
+       
+    }
+}
+// print the total number of NFTs we have minted to the console
+function getTotalSupply() {
+    console.log("total NFTs minted till now :"+NFTs.length)
+
+}
+
+//delete NFT
+function deleteNFTByName(name) {
+    const nameLower = name.toLowerCase();
+    let index = -1;
+
+    // Find the index of the NFT with the given name
+    for (let i = 0; i < NFTs.length; i++) {
+        if (NFTs[i].name.toLowerCase() === nameLower) {
+            index = i;
+            break; // Exit the loop once the NFT is found
+        }
+    }
+
+    if (index !== -1) {
+        // Remove the NFT from the array
+        NFTs.splice(index, 1);
+        console.log(`NFT "${name}" deleted successfully.`);
+    } else {
+        console.log(`No NFT found with the name: ${name}`);
+    }
+}
+
+// Filter NFTs by creator
+function filterNFTsByCreator(creator) {
+    const filteredNFTs = NFTs.filter(nft => nft.creator.toLowerCase() === creator.toLowerCase());
+    if (filteredNFTs.length === 0) {
+        console.log(`No NFTs found with the creator: ${creator}`);
+    } else {
+        console.log(`NFTs created by ${creator}:`);
+        filteredNFTs.forEach(nft => console.log(nft));
+    }
+}
+
+
+// call your functions below this line
+mintNFT("harniaz","14 feb","asdf","n");
+mintNFT("hd","1 feb","asdf","n");
+
+getTotalSupply();
+listNFTs();
+
+findNFTByName("hd");
+filterNFTsByCreator("asdf")
