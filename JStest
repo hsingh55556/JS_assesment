@@ -108,4 +108,5 @@ getTotalSupply();
 listNFTs();
 
 findNFTByName("hd");
-filterNFTsByCreator("asdf")
+filterNFTsByCreator("asdf");
+deleteNFTByName("harniaz");
