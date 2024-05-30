@@ -1,12 +1,34 @@
+/* 
+// Metacrafters - Beginning Javascript
+//
+// This is a javascript playground for testing your javascript code!
+// When you are ready to test, simply right click and select "Run Code"
+// to see the result print below. If you have more then one snippet of code,
+// you can highlight the code you want to test, and then right click and select "Run Code"
+*/
+
+// Enter your code below this line
+
+// Code example
+/*
+Assessment Requirements
+1. Create a variable that can hold a number of NFT's. What type of variable might this be?
+2. Create an object inside your mintNFT function that will hold the metadata for your NFTs. 
+   The metadata values will be passed to the function as parameters. When the NFT is ready, 
+   you will store it in the variable you created in step 1
+3. Your listNFTs() function will print all of your NFTs metadata to the console (i.e. console.log("Name: " + someNFT.name))
+4. For good measure, getTotalSupply() should return the number of NFT's you have created
+*/
+
 // create a variable to hold your NFT's
 const NFTs = []
 
 // this function will take in some values as parameters, create an
 // NFT object using the parameters passed to it for its metadata, 
-// and store it in the variable above.
-function mintNFT (_name, _publish_date, _creator, _functionality, 
+// and store i  t in the variable above.
+function mintNFT (_name, _publish_date, _creator, _functionality,_colour, _rarity 
 ) {
-    if (!_name || !_publish_date || !_creator || !_functionality) {
+    if (!_name || !_publish_date || !_creator || !_functionality || !_colour || !_rarity) {
         console.error("Error: Missing parameters. All fields are required.");
         return;
     }
@@ -14,7 +36,9 @@ function mintNFT (_name, _publish_date, _creator, _functionality,
         "name": _name,
         "publish_date": _publish_date,
         "creator": _creator,
-        "functionality": _functionality 
+        "functionality": _functionality, 
+        "colour" : _colour,
+        "rarity": _rarity
 
     }
     NFTs.push(NFT);
@@ -51,13 +75,13 @@ function findNFTByName(name) {
         console.log(`No NFT found with the name: ${name}`);
     }
     else{
-        console.log('Found NFT:');
-        console.log(`ID: ${foundNFT.id}`);
+        console.log('Found NFT:')
         console.log(`Name: ${foundNFT.name}`);
         console.log(`Publish Date: ${foundNFT.publish_date}`);
         console.log(`Creator: ${foundNFT.creator}`);
         console.log(`Functionality: ${foundNFT.functionality}`);
-       
+        console.log(`colour: ${foundNFT.colour}`);
+        console.log(`rarity:  ${foundNFT.rarity}`);
     }
 }
 // print the total number of NFTs we have minted to the console
@@ -74,7 +98,7 @@ function deleteNFTByName(name) {
     // Find the index of the NFT with the given name
     for (let i = 0; i < NFTs.length; i++) {
         if (NFTs[i].name.toLowerCase() === nameLower) {
-            index = i;
+            index = i
             break; // Exit the loop once the NFT is found
         }
     }
@@ -101,12 +125,14 @@ function filterNFTsByCreator(creator) {
 
 
 // call your functions below this line
-mintNFT("harniaz","14 feb","asdf","n");
-mintNFT("hd","1 feb","asdf","n");
+mintNFT("Ben10","1 dec","MAX","hero","RGB","ultra rare");
+mintNFT("gwen","23 feb","MAX","sidekick","purple","common");
+mintNFT("vilgax","2 BC","drax","villan","green","rare");
 
 getTotalSupply();
 listNFTs();
-
-findNFTByName("hd");
-filterNFTsByCreator("asdf");
-deleteNFTByName("harniaz");
+getTotalSupply();
+findNFTByName("Ben10");
+filterNFTsByCreator("MAX");
+deleteNFTByName("vilgax");
+getTotalSupply();
